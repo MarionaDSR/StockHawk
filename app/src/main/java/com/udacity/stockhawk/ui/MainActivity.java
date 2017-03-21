@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
             }
         }).attachToRecyclerView(stockRecyclerView);
-
-
     }
 
     private boolean networkUp() {
@@ -142,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private class CheckStockTask extends AsyncTask<String, Void, Boolean> {
         private String symbol;
         private Stock stock;
+        private String error;
 
 //        @Override
 //        protected void onPreExecute() {
@@ -158,23 +157,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // name or an other value must be checked
                 exists = (stock != null && stock.getName() != null);
             } catch (IOException e) {
-                exists = false;
+                error = e.getLocalizedMessage();
+                exists = null;
             }
             return exists;
         }
 
         @Override
         protected void onPostExecute(Boolean exists) {
-            if (exists) {
-                if (networkUp()) {
-                    swipeRefreshLayout.setRefreshing(true);
-                } else {
-                    String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
-                    showMessage(message);
-                }
-                addCheckedStock(symbol);
+            if (error != null) {
+                showMessage(getString(R.string.error_io_error));
+                Timber.e(error);
             } else {
-                showMessage(String.format(getResources().getString(R.string.error_symbol_not_found), symbol));
+                if (exists) {
+                    if (networkUp()) {
+                        swipeRefreshLayout.setRefreshing(true);
+                    } else {
+                        String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
+                        showMessage(message);
+                    }
+                    addCheckedStock(symbol);
+                } else {
+                    showMessage(getString(R.string.error_symbol_not_found, symbol));
+                }
             }
         }
     }

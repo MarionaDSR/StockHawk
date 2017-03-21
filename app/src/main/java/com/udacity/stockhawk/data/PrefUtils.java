@@ -42,12 +42,15 @@ public final class PrefUtils {
     private static void editStockPref(Context context, String symbol, Boolean add) {
         String key = context.getString(R.string.pref_stocks_key);
         Set<String> stocks = getStocks(context);
-
+        Timber.d("Before: " + stocks.size());
         if (add) {
             stocks.add(symbol);
+            Timber.d("Adding " + symbol);
         } else {
             stocks.remove(symbol);
+            Timber.d("Removing " + symbol);
         }
+        Timber.d("After: " + stocks.size());
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();

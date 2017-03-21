@@ -72,6 +72,7 @@ public final class QuoteSyncJob {
                 String symbol = iterator.next();
 
                 Stock stock = quotes.get(symbol);
+                Timber.i("Currency for " + symbol + ": " + stock.getCurrency());
                 StockQuote quote = stock.getQuote();
                 if (quote != null && quote.getPrice() != null) { // checkin if stock has values
 

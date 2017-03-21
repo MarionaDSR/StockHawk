@@ -28,6 +28,7 @@
     <string name="error_pattern">ERROR: %1s</string>
     <string name="error_unknown">Unknown cause</string>
     <string name="error_symbol_not_found">%1s symbol not found! This stock can not be added, please try again.</string>
+    <string name="error_io_error">No network connectivity! Please check your connectivity or try again later.</string>
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
