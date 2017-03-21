@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import timber.log.Timber;
+
 public final class PrefUtils {
 
     private PrefUtils() {
@@ -55,10 +57,12 @@ public final class PrefUtils {
 
     public static void addStock(Context context, String symbol) {
         editStockPref(context, symbol, true);
+        Timber.i(symbol + " added");
     }
 
     public static void removeStock(Context context, String symbol) {
         editStockPref(context, symbol, false);
+        Timber.i(symbol + " removed");
     }
 
     public static String getDisplayMode(Context context) {

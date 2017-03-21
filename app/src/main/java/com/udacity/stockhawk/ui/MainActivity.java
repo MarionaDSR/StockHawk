@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -24,24 +25,32 @@ import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
         StockAdapter.StockAdapterOnClickHandler {
 
     private static final int STOCK_LOADER = 0;
+
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.recycler_view)
     RecyclerView stockRecyclerView;
+
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
+
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.error)
     TextView error;
+
     private StockAdapter adapter;
 
     @Override
@@ -116,18 +125,57 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         new AddStockDialog().show(getFragmentManager(), "StockDialogFragment");
     }
 
-    void addStock(String symbol) {
+    protected void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
+            new CheckStockTask().execute(symbol);
+        }
+    }
 
-            if (networkUp()) {
-                swipeRefreshLayout.setRefreshing(true);
-            } else {
-                String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    protected void addCheckedStock(String symbol) {
+        PrefUtils.addStock(this, symbol);
+        QuoteSyncJob.syncImmediately(this);
+    }
+
+    /**
+     * Async Task to check if a new symbol exists before adding it to our system.
+     */
+    private class CheckStockTask extends AsyncTask<String, Void, Boolean> {
+        private String symbol;
+        private Stock stock;
+
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            symbol = params[0];
+            Boolean exists;
+            try {
+                stock = YahooFinance.get(symbol);
+                // returns an stock even if doesn't exists
+                // name or an other value must be checked
+                exists = (stock != null && stock.getName() != null);
+            } catch (IOException e) {
+                exists = false;
             }
+            return exists;
+        }
 
-            PrefUtils.addStock(this, symbol);
-            QuoteSyncJob.syncImmediately(this);
+        @Override
+        protected void onPostExecute(Boolean exists) {
+            if (exists) {
+                if (networkUp()) {
+                    swipeRefreshLayout.setRefreshing(true);
+                } else {
+                    String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
+                    showMessage(message);
+                }
+                addCheckedStock(symbol);
+            } else {
+                showMessage(String.format(getResources().getString(R.string.error_symbol_not_found), symbol));
+            }
         }
     }
 
@@ -149,13 +197,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         adapter.setCursor(data);
     }
 
-
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         swipeRefreshLayout.setRefreshing(false);
         adapter.setCursor(null);
     }
-
 
     private void setDisplayModeMenuItemIcon(MenuItem item) {
         if (PrefUtils.getDisplayMode(this)
@@ -185,5 +231,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
