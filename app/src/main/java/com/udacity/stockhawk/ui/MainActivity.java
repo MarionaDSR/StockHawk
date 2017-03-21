@@ -159,6 +159,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             } catch (IOException e) {
                 error = e.getLocalizedMessage();
                 exists = null;
+            } catch (StringIndexOutOfBoundsException e) {
+                // if input is not in latin alphabet
+                error = e.getLocalizedMessage();
+                exists = null;
             }
             return exists;
         }
