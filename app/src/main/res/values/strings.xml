@@ -17,8 +17,9 @@
     <string name="default_stocks_facebook" translatable="false">FB</string>
 
 
-    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
-
+    <string name="action_change_units">Display Mode</string>
+    <string name="display_mode_percentage">Percentage</string>
+    <string name="display_mode_absolute">Absolute</string>
 
     <string name="dialog_title">Add Stock</string>
     <string name="dialog_hint">Symbol (e.g. GOOG)</string>

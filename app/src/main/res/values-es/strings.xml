@@ -2,6 +2,10 @@
 <resources>
     <string name="app_name">Halcón en Acción</string>
 
+    <string name="action_change_units">Modo de visualización</string>
+    <string name="display_mode_percentage">Porcentaje</string>
+    <string name="display_mode_absolute">Absoluto</string>
+
     <string name="dialog_title">Añadir Acción</string>
     <string name="dialog_hint">Símbolo (p.ej. GOOG)</string>
     <string name="dialog_cancel">Cancelar</string>

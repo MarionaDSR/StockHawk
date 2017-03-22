@@ -2,6 +2,10 @@
 <resources>
     <string name="app_name">الأسهم، هوك</string>
 
+    <string name="action_change_units">وضع العرض</string>
+    <string name="display_mode_percentage">النسبة المئوية</string>
+    <string name="display_mode_absolute">مطلق</string>
+
     <string name="dialog_title">إضافة سهم</string>
     <string name="dialog_hint">الرمز (على سبيل المثال، GOOG)</string>
     <string name="dialog_cancel">إلغاء</string>
