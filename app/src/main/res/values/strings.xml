@@ -16,6 +16,7 @@
     <string name="default_stocks_microsoft" translatable="false">MSFT</string>
     <string name="default_stocks_facebook" translatable="false">FB</string>
 
+    <string name="extra_symbol_key" translatable="false">symbol</string>
 
     <string name="action_change_units">Display Mode</string>
     <string name="display_mode_percentage">Percentage</string>
@@ -26,14 +27,17 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
 
-    <string name="error_pattern">ERROR: %1s</string>
+    <string name="error_pattern">ERROR: %1$s</string>
     <string name="error_unknown">Unknown cause</string>
-    <string name="error_symbol_not_found">%1s symbol not found! This stock can not be added, please try again.</string>
+    <string name="error_symbol_not_found">%1$s symbol not found! This stock can not be added, please try again.</string>
     <string name="error_io_error">No network connectivity! Please check your connectivity or try again later.</string>
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
-    <string name="toast_stock_added_no_connectivity">Symbol %1s added. Will refresh when network available.</string>
+    <string name="toast_stock_added_no_connectivity">Symbol %1$s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
+    <string name="chart_no_data">No data available</string>
+    <string name="chart_desc">Historical Chart</string>
+    <string name="chart_axis_date_format">%1$d.%2$d</string>
 </resources>

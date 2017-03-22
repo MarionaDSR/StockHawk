@@ -21,4 +21,7 @@
     <string name="toast_stock_added_no_connectivity">تمت إضافة الرمز%s1 ثانية. سيتم تحديث عندما الشبكة المتاحة.</string>
     <string name="toast_no_connectivity">سيتم تحديث عندما الشبكة المتاحة.</string>
 
+    <string name="chart_no_data">لا تتوافر بيانات</string>
+    <string name="chart_desc">المخطط التاريخي</string>
+    <string name="chart_axis_date_format">%1$d.%2$d</string>
 </resources>
