@@ -2,4 +2,12 @@
     <dimen name="activity_large_margin">16dp</dimen>
     <dimen name="activity_small_margin">4dp</dimen>
     <dimen name="activity_change_margin">3dp</dimen>
+
+    <dimen name="widget_default_height">110dp</dimen>
+    <dimen name="widget_default_width">110dp</dimen>
+    <dimen name="widget_min_resize_height">40dp</dimen>
+    <dimen name="widget_min_resize_width">@dimen/widget_default_width</dimen>
+
+    <dimen name="widget_padding">8dp</dimen>
+    <dimen name="action_bar_default_height">30dp</dimen>
 </resources>

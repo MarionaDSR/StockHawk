@@ -24,4 +24,7 @@
     <string name="chart_no_data">لا تتوافر بيانات</string>
     <string name="chart_desc">المخطط التاريخي</string>
     <string name="chart_axis_date_format">%1$d.%2$d</string>
+    <string name="widget_stocks_title">الأسهم هوك القطعة</string>
+    <string name="empty_stocks_list">لا توجد أسهم في قائمتك</string>
+
 </resources>

@@ -40,4 +40,7 @@
     <string name="chart_no_data">No data available</string>
     <string name="chart_desc">Historical Chart</string>
     <string name="chart_axis_date_format">%1$d.%2$d</string>
+
+    <string name="widget_stocks_title">Stocks Hawk Widget</string>
+    <string name="empty_stocks_list">No stocks on your list</string>
 </resources>
