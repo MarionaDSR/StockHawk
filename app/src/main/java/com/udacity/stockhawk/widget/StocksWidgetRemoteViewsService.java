@@ -79,6 +79,11 @@ public class StocksWidgetRemoteViewsService extends RemoteViewsService {
                 } else {
                     change = FormatUtils.formatPercentage(percentage);
                 }
+                if (percentage > 0) {
+                    views.setInt(R.id.change, "setBackgroundResource", R.drawable.percent_change_pill_green);
+                } else {
+                    views.setInt(R.id.change, "setBackgroundResource", R.drawable.percent_change_pill_red);
+                }
 
                 views.setTextViewText(R.id.symbol, symbol);
                 views.setTextViewText(R.id.price, price);

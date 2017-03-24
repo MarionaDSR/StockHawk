@@ -36,7 +36,7 @@ public class FormatUtils {
     }
 
     public static String formatPercentage(float value) {
-        return format(value, PERCENTAGE_FORMAT);
+        return format(value/100, PERCENTAGE_FORMAT);
     }
 
     public static List<HistoricalData> parseHistory(String history) {

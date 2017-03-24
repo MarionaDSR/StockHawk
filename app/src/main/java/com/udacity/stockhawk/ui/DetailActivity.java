@@ -71,8 +71,17 @@ public class DetailActivity extends AppCompatActivity {
             // data available: _id, symbol, price, absolute_change, percentage_change, history
 
             tvValue.setText(FormatUtils.formatPrice(cursor.getFloat(POSITION_PRICE)));
-            tvAbsolute.setText(FormatUtils.formatPriceWithSign(cursor.getFloat(POSITION_ABSOLUTE_CHANGE)));
+            float absoluteChange = cursor.getFloat(POSITION_ABSOLUTE_CHANGE);
+            tvAbsolute.setText(FormatUtils.formatPriceWithSign(absoluteChange));
             tvPercentage.setText(FormatUtils.formatPercentage(cursor.getFloat(POSITION_PERCENTAGE_CHANGE)));
+
+            if (absoluteChange > 0) {
+                tvAbsolute.setBackgroundResource(R.drawable.percent_change_pill_green);
+                tvPercentage.setBackgroundResource(R.drawable.percent_change_pill_green);
+            } else {
+                tvAbsolute.setBackgroundResource(R.drawable.percent_change_pill_red);
+                tvPercentage.setBackgroundResource(R.drawable.percent_change_pill_red);
+            }
 
             String history = cursor.getString(POSITION_HISTORY);
             List<HistoricalData> historyList = FormatUtils.parseHistory(history);
