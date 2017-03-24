@@ -55,6 +55,8 @@ public final class PrefUtils {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putStringSet(key, stocks);
+        // changes on sets are not detected. Saving the counter allows right update
+        editor.putInt(context.getString(R.string.pref_stocks_counter_key), stocks.size());
         editor.apply();
     }
 
