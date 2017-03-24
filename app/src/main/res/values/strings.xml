@@ -28,8 +28,6 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
 
-    <string name="error_pattern">ERROR: %1$s</string>
-    <string name="error_unknown">Unknown cause</string>
     <string name="error_symbol_not_found">%1$s symbol not found! This stock can not be added, please try again.</string>
     <string name="error_io_error">No network connectivity! Please check your connectivity or try again later.</string>
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>

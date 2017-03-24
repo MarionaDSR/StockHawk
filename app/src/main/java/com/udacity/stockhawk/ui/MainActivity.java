@@ -127,13 +127,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         new AddStockDialog().show(getFragmentManager(), "StockDialogFragment");
     }
 
-    protected void addStock(String symbol) {
+    void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
             new CheckStockTask().execute(symbol);
         }
     }
 
-    protected void addCheckedStock(String symbol) {
+    private void addCheckedStock(String symbol) {
         PrefUtils.addStock(this, symbol);
         QuoteSyncJob.syncImmediately(this);
     }
@@ -160,11 +160,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // returns an stock even if doesn't exists
                 // name or an other value must be checked
                 exists = (stock != null && stock.getName() != null);
-            } catch (IOException e) {
-                error = e.getLocalizedMessage();
-                exists = null;
-            } catch (StringIndexOutOfBoundsException e) {
-                // if input is not in latin alphabet
+            } catch (IOException | StringIndexOutOfBoundsException e) {
+                // StringIndexOutOfBoundsException if input is not in latin alphabet
                 error = e.getLocalizedMessage();
                 exists = null;
             }

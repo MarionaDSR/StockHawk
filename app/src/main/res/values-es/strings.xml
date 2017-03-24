@@ -11,8 +11,6 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="dialog_add">Añadir</string>
 
-    <string name="error_pattern">ERROR: %1$s</string>
-    <string name="error_unknown">Causa desconocida</string>
     <string name="error_symbol_not_found">El símbolo %1$s no se encuentra! Este valor no puede ser añadido, por favor, inténtalo de nuevo.</string>
     <string name="error_io_error">No hay conexión de red! Por favor, comprueba tu conectividad o reinténtalo luego</string>
     <string name="error_no_network">No hay conexión de red! Los datos se recargarán cuando la red esté disponible.</string>

@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="@android:style/TextAppearance.Medium"
+        android:padding="@dimen/activity_large_margin"
         android:visibility="gone"
         tools:text="Error message" />
 </merge>

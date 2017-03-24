@@ -11,8 +11,6 @@
     <string name="dialog_cancel">إلغاء</string>
     <string name="dialog_add">إضافة</string>
 
-    <string name="error_pattern">خطأ: %1s</string>
-    <string name="error_unknown">سبب غير معروف</string>
     <string name="error_symbol_not_found">لم يتم العثور على رمز %1s! لا يمكن إضافة هذا المخزون، يرجى إعادة المحاولة.</string>
     <string name="error_io_error">لا اتصال الشبكة! يرجى التحقق من الاتصال أو إعادة المحاولة لاحقا.</string>
     <string name="error_no_network">لا اتصال الشبكة! سيتم تحميل مؤشر الأسهم عندما تكون الشبكة متاحة.</string>

@@ -67,7 +67,7 @@ public class DetailActivity extends AppCompatActivity {
         lcChart.setNoDataText(getString(R.string.chart_no_data));
 
         Cursor cursor = getContentResolver().query(Contract.Quote.makeUriForStock(symbol), null, null, null, null, null);
-        if (cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             // data available: _id, symbol, price, absolute_change, percentage_change, history
 
             tvValue.setText(FormatUtils.formatPrice(cursor.getFloat(POSITION_PRICE)));
@@ -96,6 +96,7 @@ public class DetailActivity extends AppCompatActivity {
                 lcChart.invalidate();
             }
         }
+        cursor.close();
     }
 
     private LineData prepareData(List<Entry> entries, String title) {
